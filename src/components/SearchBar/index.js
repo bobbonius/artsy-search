@@ -1,5 +1,12 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
+import { keyframes } from "@emotion/core";
+import { useQuery } from "@apollo/react-hooks";
+import { Client, GET_SEARCH_RESULTS } from "../../utils"
+import Icon from "../Icon";
+import Filter from "../Filter";
+import Card from "../Card";
+import { MagnifyingGlass, LoadingIndicator, Clear } from "../../icons";
 
 const SearchWrapper = styled.div`
   display: flex;
@@ -27,14 +34,106 @@ const Input = styled.input`
   outline: none;
 `;
 
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const Rotate = styled.div`
+  animation: ${rotate} 1s ease-in-out infinite;
+`;
+
 const SearchBar = () => {
+  const initialQuery = "";
+  const initialEntity = ["ARTICLE"];
+  const initialTitle = "Articles";
+
+  const [query, setQuery] = useState(initialQuery);
+  const [entity, setEntity] = useState(initialEntity);
+  const [title, setTitle] = useState(initialTitle);
+
+  const { loading, error, data } = useQuery(GET_SEARCH_RESULTS, {
+    variables: { query: query, entities: entity },
+    client: Client
+  });
+
+  const handleChange = e => {
+    e.preventDefault();
+    setQuery(e.target.value);
+  };
+
+  const selectedFilter = e => {
+    setEntity(e.target.value);
+    setTitle(e.target.title);
+  };
+
+  const truncate = (string, maxLength, seperator = "...") => {
+    if (string.length > maxLength) {
+      return string.slice(0, maxLength - seperator.length) + seperator;
+    }
+    return string;
+  };
+
+  const clearAll = e => {
+    if (e) {
+      setQuery(initialQuery);
+      setEntity(initialEntity);
+      setTitle(initialTitle);
+    }
+  };
+
   return (
     <>
       <SearchWrapper>
-        <Input />
+        <Icon size="26" margin="0.8">
+          <MagnifyingGlass />
+        </Icon>
+        <Input
+          onChange={handleChange}
+          placeholder="Search by artist, gallery, style, theme, tag, etc."
+          value={query}
+        />
+        {query && loading ? (
+          <Rotate>
+            <Icon size="26" margin="0.6">
+              <LoadingIndicator />
+            </Icon>
+          </Rotate>
+        ) : (
+          ""
+        )}
+        {query && !loading ? (
+          <Icon onClick={clearAll} clear size="26" margin="0.6">
+            <Clear />
+          </Icon>
+        ) : (
+          ""
+        )}
       </SearchWrapper>
+      {query && data ? <Filter selectedFilter={selectedFilter} /> : ""}
+      {query && data && !loading ? (
+        data.search.edges.map((result, index) => {
+          const { displayLabel, imageUrl, href } = result.node;
+          return (
+            <Card
+              displayLabel={truncate(displayLabel, 40)}
+              imageUrl={imageUrl}
+              href={href}
+              entity={title}
+              key={index}
+            />
+          );
+        })
+      ) : (
+        <h1>{error}</h1>
+      )}
     </>
   );
 };
 
-export default SearchBar
+export default SearchBar;
