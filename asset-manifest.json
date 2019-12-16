@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/artsy-search/static/css/main.8be3e07f.chunk.css",
+    "main.js": "/artsy-search/static/js/main.b74836f5.chunk.js",
+    "main.js.map": "/artsy-search/static/js/main.b74836f5.chunk.js.map",
+    "runtime~main.js": "/artsy-search/static/js/runtime~main.aa5e37b8.js",
+    "runtime~main.js.map": "/artsy-search/static/js/runtime~main.aa5e37b8.js.map",
+    "static/js/2.25c9f150.chunk.js": "/artsy-search/static/js/2.25c9f150.chunk.js",
+    "static/js/2.25c9f150.chunk.js.map": "/artsy-search/static/js/2.25c9f150.chunk.js.map",
+    "index.html": "/artsy-search/index.html",
+    "precache-manifest.6107a6b9b06b8ee276b3f746dcf71976.js": "/artsy-search/precache-manifest.6107a6b9b06b8ee276b3f746dcf71976.js",
+    "service-worker.js": "/artsy-search/service-worker.js",
+    "static/css/main.8be3e07f.chunk.css.map": "/artsy-search/static/css/main.8be3e07f.chunk.css.map"
+  }
+}
