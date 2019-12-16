@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import SearchBar from "../../components/SearchBar"
+import SearchBar from "../../components/SearchBar";
 
 const Container = styled.div`
   display: grid;

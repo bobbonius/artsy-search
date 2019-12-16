@@ -1,22 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import styled from "@emotion/styled";
-
-const filters = [
-  { entity: "ARTIST", title: "Artists" },
-  { entity: "ARTWORK", title: "Artworks" },
-  { entity: "ARTICLE", title: "Articles" },
-  { entity: "CITY", title: "Cities" },
-  { entity: "COLLECTION", title: "Collections" },
-  { entity: "FAIR", title: "Fairs" },
-  { entity: "FEATURE", title: "Features" },
-  { entity: "GALLERY", title: "Galleries" },
-  { entity: "GENE", title: "Genes" },
-  { entity: "INSTITUTION", title: "Institutions" },
-  { entity: "PROFILE", title: "Profiles" },
-  { entity: "SALE", title: "Sales" },
-  { entity: "SHOW", title: "Shows" },
-  { entity: "TAG", title: "Tags" }
-];
+import { filters } from "../../utils";
 
 const Button = styled.button`
   color: black;
@@ -109,13 +93,13 @@ const Filter = ({ selectedFilter }) => {
       }
 
       if (scrollWheelUp) {
-        scroll();
         incrementPosition();
+        scroll();
       }
 
       if (scrollWheelDown) {
-        scroll();
         decrementPosition();
+        scroll();
       }
     };
 
@@ -129,11 +113,7 @@ const Filter = ({ selectedFilter }) => {
           const { entity, title } = filter;
           return (
             <FilterItem key={index}>
-              <Button
-                onClick={selectedFilter}
-                value={entity}
-                title={title}
-              >
+              <Button onClick={selectedFilter} value={entity} title={title}>
                 {title}
               </Button>
             </FilterItem>

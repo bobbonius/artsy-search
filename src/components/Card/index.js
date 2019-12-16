@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import Icon from "../Icon";
 import { ImagePlaceholder } from "../../icons/";
-import { baseUrl } from "../../utils"
+import { baseUrl } from "../../utils";
 
 const CardGrid = styled.div`
   display: grid;

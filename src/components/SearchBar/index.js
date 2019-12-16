@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/core";
 import { useQuery } from "@apollo/react-hooks";
-import { Client, GET_SEARCH_RESULTS, useHelpers } from "../../utils";
 import Icon from "../Icon";
 import Filter from "../Filter";
 import Card from "../Card";
+import { Client, GET_SEARCH_RESULTS, useHelpers } from "../../utils";
 import { MagnifyingGlass, LoadingIndicator, Clear } from "../../icons";
 
 const SearchWrapper = styled.div`
