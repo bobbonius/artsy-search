@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import SearchBar from "../../components/SearchBar"
 
 const Container = styled.div`
   display: grid;
@@ -15,6 +16,7 @@ const App = () => {
   return (
     <>
       <Container>
+        <SearchBar />
       </Container>
     </>
   );
