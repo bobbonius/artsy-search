@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "df337e3ce03a00c52c9d6e8e5c18aa87",
+    "revision": "4abc70e3f9b7aabd929b11d54ccf8d57",
     "url": "/artsy-search/index.html"
   },
   {
