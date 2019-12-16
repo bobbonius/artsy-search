@@ -48,7 +48,7 @@ const ImagePlaceholderWrapper = styled.div`
 const Link = styled.a`
   color: black;
   &:hover {
-    color: darkblue;
+    color: rgb(97, 101, 102);
   }
 `;
 
