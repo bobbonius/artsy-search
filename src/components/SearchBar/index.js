@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/core";
 import { useQuery } from "@apollo/react-hooks";
-import { Client, GET_SEARCH_RESULTS } from "../../utils"
+import { Client, GET_SEARCH_RESULTS, useHelpers } from "../../utils";
 import Icon from "../Icon";
 import Filter from "../Filter";
 import Card from "../Card";
@@ -34,7 +34,6 @@ const Input = styled.input`
   outline: none;
 `;
 
-
 const rotate = keyframes`
   from {
     transform: rotate(0deg);
@@ -56,6 +55,7 @@ const SearchBar = () => {
   const [query, setQuery] = useState(initialQuery);
   const [entity, setEntity] = useState(initialEntity);
   const [title, setTitle] = useState(initialTitle);
+  const { truncateString } = useHelpers();
 
   const { loading, error, data } = useQuery(GET_SEARCH_RESULTS, {
     variables: { query: query, entities: entity },
@@ -70,13 +70,6 @@ const SearchBar = () => {
   const selectedFilter = e => {
     setEntity(e.target.value);
     setTitle(e.target.title);
-  };
-
-  const truncate = (string, maxLength, seperator = "...") => {
-    if (string.length > maxLength) {
-      return string.slice(0, maxLength - seperator.length) + seperator;
-    }
-    return string;
   };
 
   const clearAll = e => {
@@ -121,7 +114,7 @@ const SearchBar = () => {
           const { displayLabel, imageUrl, href } = result.node;
           return (
             <Card
-              displayLabel={truncate(displayLabel, 40)}
+              displayLabel={truncateString(displayLabel, 40)}
               imageUrl={imageUrl}
               href={href}
               entity={title}

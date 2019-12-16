@@ -128,12 +128,11 @@ const Filter = ({ selectedFilter }) => {
         {filters.map((filter, index) => {
           const { entity, title } = filter;
           return (
-            <FilterItem>
+            <FilterItem key={index}>
               <Button
                 onClick={selectedFilter}
                 value={entity}
                 title={title}
-                key={index}
               >
                 {title}
               </Button>

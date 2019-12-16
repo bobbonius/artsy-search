@@ -1,6 +1,22 @@
 import ApolloClient from "apollo-boost";
 import { gql } from "apollo-boost";
 
+export const baseUrl = "https://artsy.net";
+
+export function useHelpers() {
+  const truncateString = (string, maxLength, seperator = "...") => {
+    if (string.length > maxLength) {
+      return string.slice(0, maxLength - seperator.length) + seperator;
+    }
+    return string;
+  };
+
+  return {
+    truncateString
+  }
+}
+
+
 export const Client = new ApolloClient({
   uri: "https://metaphysics-production.artsy.net"
 });

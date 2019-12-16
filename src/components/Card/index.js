@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import Icon from "../Icon";
 import { ImagePlaceholder } from "../../icons/";
+import { baseUrl } from "../../utils"
 
 const CardGrid = styled.div`
   display: grid;
@@ -50,8 +51,6 @@ const Link = styled.a`
     color: darkblue;
   }
 `;
-
-const baseUrl = "https://artsy.net";
 
 const Card = ({ displayLabel, imageUrl, entity, href }) => {
   return (
