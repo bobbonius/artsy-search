@@ -59,20 +59,20 @@ const SearchBar = () => {
 
   const { loading, error, data } = useQuery(GET_SEARCH_RESULTS, {
     variables: { query: query, entities: entity },
-    client: Client
+    client: Client,
   });
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     e.preventDefault();
     setQuery(e.target.value);
   };
 
-  const selectedFilter = e => {
+  const selectedFilter = (e) => {
     setEntity(e.target.value);
     setTitle(e.target.title);
   };
 
-  const clearAll = e => {
+  const clearAll = (e) => {
     if (e) {
       setQuery(initialQuery);
       setEntity(initialEntity);
@@ -91,25 +91,23 @@ const SearchBar = () => {
           placeholder="Search by artist, gallery, style, theme, tag, etc."
           value={query}
         />
-        {query && loading ? (
+        {query && loading && (
           <Rotate>
             <Icon size="26" margin="0.6">
               <LoadingIndicator />
             </Icon>
           </Rotate>
-        ) : (
-          ""
         )}
-        {query && !loading ? (
+        {query && !loading && (
           <Icon onClick={clearAll} clear size="26" margin="0.6">
             <Clear />
           </Icon>
-        ) : (
-          ""
         )}
       </SearchWrapper>
-      {query && data ? <Filter selectedFilter={selectedFilter} /> : ""}
-      {query && data && !loading ? (
+      {query && data && <Filter selectedFilter={selectedFilter} />}
+      {query &&
+        data &&
+        !loading &&
         data.search.edges.map((result, index) => {
           const { displayLabel, imageUrl, href } = result.node;
           return (
@@ -121,10 +119,8 @@ const SearchBar = () => {
               key={index}
             />
           );
-        })
-      ) : (
-        <h1>{error}</h1>
-      )}
+        })}
+      {error && <h1>Apollo error: {error}</h1>}
     </>
   );
 };

@@ -28,7 +28,7 @@ const Button = styled.button`
 const FilterWrapper = styled.div`
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: repeat(${props => props.items}, 1fr);
+  grid-template-columns: repeat(${(props) => props.items}, 1fr);
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   overflow-x: scroll;
@@ -83,14 +83,11 @@ const Filter = ({ selectedFilter }) => {
       }
     };
 
-    const handleScroll = e => {
-      const scrollIsTouchPad = e.deltaX % 1 === 0 && e.deltaY % 1 === 0;
-      const scrollWheelUp = e.deltaX === 0 && e.deltaY > 4;
-      const scrollWheelDown = e.deltaX === 0 && e.deltaY < 4;
+    const handleScroll = (e) => {
+      const scrollWheelUp = e.deltaY > 4;
+      const scrollWheelDown = e.deltaY < -4;
 
-      if (scrollIsTouchPad) {
-        return;
-      }
+      if (e.type === "scroll") return;
 
       if (scrollWheelUp) {
         incrementPosition();
