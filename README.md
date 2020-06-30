@@ -1,6 +1,8 @@
 # Demo
 
-[Bobbonius/Artsy-Search](http://bobbonius.com/artsy-search/)
+Go to: [Bobbonius/Artsy-Search](http://bobbonius.com/artsy-search/)
+
+I did this assignment purely for fun.
 
 # TicketSwap front-end assignment
 
